@@ -1,0 +1,51 @@
+{% extends 'user/design.html' %}
+{% load static %}
+{% block title %}Create Blog{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'newblog.css' %}">
+{% endblock %}
+
+{% block content %}
+  <!-- Navbar -->
+
+  <script>
+    function toggleDropdown() {
+      var dropdown = document.getElementById('userDropdown');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+    document.addEventListener("click", function(e) {
+      var dropdown = document.getElementById('userDropdown');
+      var icon = document.querySelector('.user-icon');
+      if (!icon.contains(e.target) && dropdown && !dropdown.contains(e.target)) {
+        dropdown.style.display = 'none';
+      }
+    });
+  </script>
+
+  <!-- Page Title -->
+  <h2>Create Blog</h2>
+
+  <!-- Blog Editor -->
+  <div class="editor-container">
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <button><b>B</b></button>
+      <button><i>i</i></button>
+      <button><u>U</u></button>
+      <button style="font-size:18px;">T</button>
+      <button style="font-size:18px;">A</button>
+    </div>
+
+    <!-- Editor -->
+    <div class="editor">
+      <input type="text" placeholder="Title" />
+      <div class="upload-area">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149091.png" alt="Upload Icon" />
+        <p>Drag & drop to upload cover image</p>
+        <button>Select from device</button>
+      </div>
+      <textarea placeholder="Write your blog content here..."></textarea>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'user/design.html' %}
+{% load static %}
+
+{% block title %}Blog Layout{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'blog.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <!-- Main Blog Section -->
+  <div class="main-blog">
+    <h2>Blog Title</h2>
+    <div class="gray-box">
+      <div class="user-icon"></div>
+    </div>
+    <div class="text-line"></div>
+    <div class="text-line"></div>
+    <div class="text-line"></div>
+    <div class="text-line short"></div>
+  </div>
+
+  <!-- Sidebar Section -->
+  <div class="sidebar">
+    <div class="post-card">
+      <div class="gray-box"></div>
+      <div class="post-title"></div>
+      <div class="post-info"></div>
+    </div>
+
+    <div class="post-card">
+      <div class="gray-box"></div>
+      <div class="post-title"></div>
+      <div class="post-info"></div>
+    </div>
+
+    <div class="post-card">
+      <div class="gray-box"></div>
+      <div class="post-title"></div>
+      <div class="post-info"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Blog{% endblock %}</title>
+  
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'design.css' %}">
+  
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <div class="logo">LOGO</div>
+      <div class="nav-buttons">
+          <a href="{% url 'home' %}" class="nav-button">Home</a>
+          <a href="{% url 'newblog' %}" class="create-button">Create</a>
+          <a href="{% url 'signup' %}" class="secondary">Sign up</a>
+          <a href="{% url 'login' %}" class="secondary">Log in</a>
+      </div>
+    </div>
+  </header>
+  <script>
+      // No JavaScript needed for simple navigation
+  </script>
+
+    <!-- Main content section -->
+
+  <!-- Main Content -->
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <small>&copy; {{ year|default:2025 }} My Blog. All rights reserved.</small>
+  </footer>
+</body>
+</html>

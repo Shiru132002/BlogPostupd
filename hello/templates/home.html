@@ -1,0 +1,154 @@
+{% extends 'user/design.html' %}
+{% load static %}
+
+{% block title %}Blog Grid{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="wrap">
+  <div class="search-row">
+    <div class="search" role="search">
+      <input type="search" placeholder="Search Blog Post" aria-label="Search blog posts" />
+      <button aria-hidden="true">🔍</button>
+    </div>
+  </div>
+
+  <!-- Grid of clickable posts -->
+  <main>
+    <section class="grid" id="postsGrid">
+
+      <a href="{% url 'blog' %}" class="card-link">
+        <article class="card">
+          <div class="thumb">IMAGE</div>
+          <div class="card-body">
+            <h3 class="post-title">The Future of AI in 2025</h3>
+            <div class="meta">
+              <div class="tiny">By John Doe · 1 hr ago</div>
+              <div class="category">Technology</div>
+            </div>
+            <div class="progress"><i></i></div>
+          </div>
+        </article>
+      </a>
+
+      <a href="{% url 'blog' %}" class="card-link">
+        <article class="card">
+          <div class="thumb">IMAGE</div>
+          <div class="card-body">
+            <h3 class="post-title">5 Easy Recipes for Busy People</h3>
+            <div class="meta">
+              <div class="tiny">By Sarah Lee · 2 hr ago</div>
+              <div class="category">Food</div>
+            </div>
+            <div class="progress"><i></i></div>
+          </div>
+        </article>
+      </a>
+
+      <a href="{% url 'blog' %}" class="card-link">
+        <article class="card">
+          <div class="thumb">IMAGE</div>
+          <div class="card-body">
+            <h3 class="post-title">Top 10 Travel Destinations</h3>
+            <div class="meta">
+              <div class="tiny">By Alex Cruz · 3 hr ago</div>
+              <div class="category">Travel</div>
+            </div>
+            <div class="progress"><i></i></div>
+          </div>
+        </article>
+      </a>
+
+      <a href="{% url 'blog' %}" class="card-link">
+        <article class="card">
+          <div class="thumb">IMAGE</div>
+          <div class="card-body">
+            <h3 class="post-title">Beginner,s Guide to Investing</h3>
+            <div class="meta">
+              <div class="tiny">By Maria Santos · 4 hr ago</div>
+              <div class="category">Finance</div>
+            </div>
+            <div class="progress"><i></i></div>
+          </div>
+        </article>
+      </a>
+
+      <a href="{% url 'blog' %}" class="card-link">
+        <article class="card">
+          <div class="thumb">IMAGE</div>
+          <div class="card-body">
+            <h3 class="post-title">Why You Should Learn Coding</h3>
+            <div class="meta">
+              <div class="tiny">By Kevin Lim · 5 hr ago</div>
+              <div class="category">Education</div>
+            </div>
+            <div class="progress"><i></i></div>
+          </div>
+        </article>
+      </a>
+
+      <a href="{% url 'blog' %}" class="card-link">
+        <article class="card">
+          <div class="thumb">IMAGE</div>
+          <div class="card-body">
+            <h3 class="post-title">Fitness Tips for Beginners</h3>
+            <div class="meta">
+              <div class="tiny">By Jane Park · 6 hr ago</div>
+              <div class="category">Health</div>
+            </div>
+            <div class="progress"><i></i></div>
+          </div>
+        </article>
+      </a>
+
+      <a href="{% url 'blog' %}" class="card-link">
+        <article class="card">
+          <div class="thumb">IMAGE</div>
+          <div class="card-body">
+            <h3 class="post-title">Photography Hacks You Must Try</h3>
+            <div class="meta">
+              <div class="tiny">By Liam Chen · 7 hr ago</div>
+              <div class="category">Art</div>
+            </div>
+            <div class="progress"><i></i></div>
+          </div>
+        </article>
+      </a>
+
+      <a href="{% url 'blog' %}" class="card-link">
+        <article class="card">
+          <div class="thumb">IMAGE</div>
+          <div class="card-body">
+            <h3 class="post-title">Understanding Climate Change</h3>
+            <div class="meta">
+              <div class="tiny">By Dr. Emily Tan · 8 hr ago</div>
+              <div class="category">Environment</div>
+            </div>
+            <div class="progress"><i></i></div>
+          </div>
+        </article>
+      </a>
+
+      <a href="{% url 'blog' %}" class="card-link">
+        <article class="card">
+          <div class="thumb">IMAGE</div>
+          <div class="card-body">
+            <h3 class="post-title">Best Productivity Apps in 2025</h3>
+            <div class="meta">
+              <div class="tiny">By Mark Rivera · 9 hr ago</div>
+              <div class="category">Lifestyle</div>
+            </div>
+            <div class="progress"><i></i></div>
+          </div>
+        </article>
+      </a>
+
+    </section>
+  </main>
+</div>
+
+{% endblock %}
