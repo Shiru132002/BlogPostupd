@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Profile - MyBlog</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'profile.css' %}">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <a href="{% url 'signedhome' %}" class="logo">MyBlog</a>
+    <nav>
+      <a href="{% url 'signedhome' %}">Home</a>
+      <a href="{% url 'newblog' %}">Create</a>
+      <a href="#">About</a>
+
+      <div class="profile-container">
+        {% if profile.profile_picture %}
+          <img src="{{ profile.profile_picture.url }}" alt="Profile" class="profile-pic" id="profilePic">
+        {% else %}
+          <img src="{% static 'image/eugene.jpeg' %}" alt="Profile" class="profile-pic" id="profilePic">
+        {% endif %}
+        <div class="dropdown-menu" id="dropdownMenu">
+          <a href="{% url 'profile' %}">My Profile</a>
+          <a href="#">Settings</a>
+          <a href="#" id="logoutBtn">Logout</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <div class="profile-container-main">
+    <div class="profile-card">
+      <div class="profile-header">
+        <h1 class="page-title">Edit Profile</h1>
+        <div class="profile-actions">
+          <a href="{% url 'profile' %}" class="back-btn">← Back to Profile</a>
+        </div>
+      </div>
+
+      <div class="profile-content">
+        <form method="post" enctype="multipart/form-data" class="edit-form">
+          {% csrf_token %}
+          
+          <!-- Messages -->
+          {% if messages %}
+            <div class="messages">
+              {% for message in messages %}
+                <div class="message {{ message.tags }}">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <div class="form-section">
+            <h2>Profile Picture</h2>
+            <div class="profile-picture-edit">
+              {% if profile.profile_picture %}
+                <img src="{{ profile.profile_picture.url }}" alt="Current Profile Picture" class="current-profile-pic">
+              {% else %}
+                <img src="{% static 'image/eugene.jpeg' %}" alt="Default Profile Picture" class="current-profile-pic">
+              {% endif %}
+              <div class="file-input-wrapper">
+                <input type="file" name="profile_picture" id="profile_picture" accept="image/*" class="file-input">
+                <label for="profile_picture" class="file-input-label">Choose New Picture</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h2>Basic Information</h2>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}" class="form-input">
+              </div>
+              <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}" class="form-input">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" value="{{ user.email }}" class="form-input" required>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h2>About Me</h2>
+            <div class="form-group">
+              <label for="bio">Bio</label>
+              <textarea id="bio" name="bio" rows="4" class="form-textarea" placeholder="Tell us about yourself...">{{ profile.bio }}</textarea>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h2>Achievements</h2>
+            <div class="form-group">
+              <label for="achievements">Achievements</label>
+              <textarea id="achievements" name="achievements" rows="4" class="form-textarea" placeholder="List your achievements, separated by commas...">{{ profile.achievements }}</textarea>
+              <small class="form-help">Separate multiple achievements with commas (e.g., "Won coding competition, Published 5 articles, Learned 3 languages")</small>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="save-btn">Save Changes</button>
+            <a href="{% url 'profile' %}" class="cancel-btn">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 MyBlog. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const profilePic = document.getElementById('profilePic');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const fileInput = document.getElementById('profile_picture');
+    const currentProfilePic = document.querySelector('.current-profile-pic');
+
+    // Toggle dropdown
+    profilePic.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('show');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!profilePic.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        dropdownMenu.classList.remove('show');
+      }
+    });
+
+    // Logout → redirect to home page
+    logoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = "{% url 'home' %}";
+    });
+
+    // Preview uploaded image
+    fileInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          currentProfilePic.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>

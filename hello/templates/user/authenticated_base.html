@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}MyBlog{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'signedhome.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <a href="{% url 'signedhome' %}" class="logo">MyBlog</a>
+    <nav>
+      <a href="{% url 'signedhome' %}">Home</a>
+      <a href="{% url 'newblog' %}">Create</a>
+      <a href="#">About</a>
+
+      <div class="profile-container">
+        <img src="{% static 'image/eugene.jpeg' %}" alt="Profile" class="profile-pic" id="profilePic">
+        <div class="dropdown-menu" id="dropdownMenu">
+          <a href="{% url 'profile' %}">My Profile</a>
+          <a href="#">Settings</a>
+          <a href="#" id="logoutBtn">Logout</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 MyBlog. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const profilePic = document.getElementById('profilePic');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    // Toggle dropdown
+    profilePic.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('show');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!profilePic.contains(e.target) && !dropdownMenu.contains(e.target)) {
+        dropdownMenu.classList.remove('show');
+      }
+    });
+
+    // Logout → redirect to home page
+    logoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = "{% url 'logout' %}";
+    });
+  </script>
+</body>
+</html>

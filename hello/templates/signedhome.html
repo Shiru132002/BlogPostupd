@@ -13,14 +13,14 @@
   <header>
     <a href="#" class="logo">MyBlog</a>
     <nav>
-      <a href="{% url 'home' %}">Home</a>
-      <a href="#">Create</a>
+      <a href="{% url 'signedhome' %}">Home</a>
+      <a href="{% url 'newblog' %}">Create</a>
       <a href="#">About</a>
 
       <div class="profile-container">
-        <img src="https://i.pravatar.cc/100" alt="Profile" class="profile-pic" id="profilePic">
+        <img src="{% static 'image/eugene.jpeg' %}" alt="Profile" class="profile-pic" id="profilePic">
         <div class="dropdown-menu" id="dropdownMenu">
-          <a href="#">My Profile</a>
+          <a href="{% url 'profile' %}">My Profile</a>
           <a href="#">Settings</a>
           <a href="#" id="logoutBtn">Logout</a>
         </div>
@@ -39,22 +39,133 @@
 
     <main>
       <section class="grid" id="postsGrid">
-        {% comment %} Display 9 example posts like in home.html {% endcomment %}
-        {% for i in "123456789" %}
+
         <a href="{% url 'blog' %}" class="card-link">
           <article class="card">
             <div class="thumb">IMAGE</div>
             <div class="card-body">
-              <h3 class="post-title">Post Title {{ i }}</h3>
+              <h3 class="post-title">The Future of AI in 2025</h3>
               <div class="meta">
-                <div class="tiny">Author · {{ i }} hr ago</div>
-                <div class="category">Category</div>
+                <div class="tiny">By John Doe · 1 hr ago</div>
+                <div class="category">Technology</div>
               </div>
               <div class="progress"><i></i></div>
             </div>
           </article>
         </a>
-        {% endfor %}
+
+        <a href="{% url 'blog' %}" class="card-link">
+          <article class="card">
+            <div class="thumb">IMAGE</div>
+            <div class="card-body">
+              <h3 class="post-title">5 Easy Recipes for Busy People</h3>
+              <div class="meta">
+                <div class="tiny">By Sarah Lee · 2 hr ago</div>
+                <div class="category">Food</div>
+              </div>
+              <div class="progress"><i></i></div>
+            </div>
+          </article>
+        </a>
+
+        <a href="{% url 'blog' %}" class="card-link">
+          <article class="card">
+            <div class="thumb">IMAGE</div>
+            <div class="card-body">
+              <h3 class="post-title">Top 10 Travel Destinations</h3>
+              <div class="meta">
+                <div class="tiny">By Alex Cruz · 3 hr ago</div>
+                <div class="category">Travel</div>
+              </div>
+              <div class="progress"><i></i></div>
+            </div>
+          </article>
+        </a>
+
+        <a href="{% url 'blog' %}" class="card-link">
+          <article class="card">
+            <div class="thumb">IMAGE</div>
+            <div class="card-body">
+              <h3 class="post-title">Beginner,s Guide to Investing</h3>
+              <div class="meta">
+                <div class="tiny">By Maria Santos · 4 hr ago</div>
+                <div class="category">Finance</div>
+              </div>
+              <div class="progress"><i></i></div>
+            </div>
+          </article>
+        </a>
+
+        <a href="{% url 'blog' %}" class="card-link">
+          <article class="card">
+            <div class="thumb">IMAGE</div>
+            <div class="card-body">
+              <h3 class="post-title">Why You Should Learn Coding</h3>
+              <div class="meta">
+                <div class="tiny">By Kevin Lim · 5 hr ago</div>
+                <div class="category">Education</div>
+              </div>
+              <div class="progress"><i></i></div>
+            </div>
+          </article>
+        </a>
+
+        <a href="{% url 'blog' %}" class="card-link">
+          <article class="card">
+            <div class="thumb">IMAGE</div>
+            <div class="card-body">
+              <h3 class="post-title">Fitness Tips for Beginners</h3>
+              <div class="meta">
+                <div class="tiny">By Jane Park · 6 hr ago</div>
+                <div class="category">Health</div>
+              </div>
+              <div class="progress"><i></i></div>
+            </div>
+          </article>
+        </a>
+
+        <a href="{% url 'blog' %}" class="card-link">
+          <article class="card">
+            <div class="thumb">IMAGE</div>
+            <div class="card-body">
+              <h3 class="post-title">Photography Hacks You Must Try</h3>
+              <div class="meta">
+                <div class="tiny">By Liam Chen · 7 hr ago</div>
+                <div class="category">Art</div>
+              </div>
+              <div class="progress"><i></i></div>
+            </div>
+          </article>
+        </a>
+
+        <a href="{% url 'blog' %}" class="card-link">
+          <article class="card">
+            <div class="thumb">IMAGE</div>
+            <div class="card-body">
+              <h3 class="post-title">Understanding Climate Change</h3>
+              <div class="meta">
+                <div class="tiny">By Dr. Emily Tan · 8 hr ago</div>
+                <div class="category">Environment</div>
+              </div>
+              <div class="progress"><i></i></div>
+            </div>
+          </article>
+        </a>
+
+        <a href="{% url 'blog' %}" class="card-link">
+          <article class="card">
+            <div class="thumb">IMAGE</div>
+            <div class="card-body">
+              <h3 class="post-title">Best Productivity Apps in 2025</h3>
+              <div class="meta">
+                <div class="tiny">By Mark Rivera · 9 hr ago</div>
+                <div class="category">Lifestyle</div>
+              </div>
+              <div class="progress"><i></i></div>
+            </div>
+          </article>
+        </a>
+
       </section>
     </main>
   </div>
@@ -81,10 +192,10 @@
       }
     });
 
-    // Logout → redirect to home page
+    // Logout → redirect to logout URL
     logoutBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      window.location.href = "{% url 'home' %}";
+      window.location.href = "{% url 'logout' %}";
     });
   </script>
 </body>
